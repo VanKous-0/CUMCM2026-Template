@@ -1,6 +1,6 @@
 # 全国大学生数学建模竞赛 LaTeX 模板（2026 年修订稿）
 
-> 本文由 Jiayi (@langongic) 依据竞赛论文格式规范，使用 OpenAI GPT 5.6 辅助制作，使用本品所产生的一切影响 Jiayi 不予负责。分发时务必注明原作者来源。
+> 本文由 Jiayi ([@langongic](https://github.com/langonginc)) 依据竞赛论文格式规范，使用 OpenAI GPT 5.6 辅助制作，使用本品所产生的一切影响 Jiayi 不予负责。分发时务必注明原作者来源。
 
 本模板依据全国大学生数学建模竞赛组委会发布的《全国大学生数学建模竞赛论文格式规范（2026 年修订稿）》制作，适用于**电子版论文**。它已设置：
 
@@ -20,6 +20,18 @@
 | `build/main.pdf` | 由示例文件生成并已检查排版的预览 PDF。 |
 
 ## 编译
+
+### Overleaf 平台
+
+本模版正在 [overleaf](https://www.overleaf.com/) 平台使用，我们建议您在这里使用。
+
+**需要注意的是，请在 `Files -> Settings -> Compiler` 中设置编译器为 `XeLaTex` 。**
+
+<img width="330" height="399" alt="image" src="https://github.com/user-attachments/assets/41d4af1a-e869-4bc2-a7ab-f0e5d93a858f" />
+
+<img width="960" height="563" alt="image" src="https://github.com/user-attachments/assets/d61a544f-e821-4c13-a939-a848009347ee" />
+
+### 手动编译
 
 请使用 **XeLaTeX**，不要使用 pdfLaTeX。
 
