@@ -1,0 +1,124 @@
+% !TEX program = xelatex
+% Copyright 2026 Jiayi
+% GitHub: @langonginc
+% 全国大学生数学建模竞赛论文模板（2026 年修订稿）
+% 电子版论文的第一页必须是摘要页；不要加入承诺书、编号专用页或身份信息。
+\documentclass[UTF8,a4paper,zihao=-4]{ctexart}
+\usepackage{cmmcm2026}
+
+\title{基于多因素评估的示例问题建模与分析}
+\mcmkeywords{数学建模；综合评价；敏感性分析；优化}
+
+\begin{document}
+
+% 摘要页即电子版第一页，页码从此页的 1 开始。
+\pagenumbering{arabic}
+\begin{mcmabstract}
+  本文以一个多因素决策问题为例，建立可复用的建模框架。首先对原始数据进行标准化处理，
+  再依据指标属性构造综合评价函数，并通过权重扰动检验结论的稳定性。结果表明，所建模型能
+  在不同情景下给出一致的排序结果；当关键权重发生较大变化时，结论仍具有良好的鲁棒性。
+
+  进一步地，本文给出优化模型以辅助资源分配，并讨论模型的适用范围和局限性。完整的可运行
+  程序、数据说明及较大篇幅的中间结果应随论文作为支撑材料提交，并在附录中列出文件清单。
+\end{mcmabstract}
+
+\clearpage
+% 正文从第 2 页开始；竞赛规范要求正文不要目录且不超过 30 页。
+\section{问题重述}
+请用自己的语言简要说明题目背景、需要解决的目标和已知条件。避免照抄题面，也不要在此处
+出现参赛队、学校或赛区等身份信息。
+
+\section{问题分析}
+将复杂问题拆分为数据处理、评价、预测或优化等子问题，并说明各部分之间的关系。以下给出
+一个可替换的技术路线示例：先统一指标量纲，再计算综合得分，最后进行稳健性检验。
+
+\section{模型假设与符号说明}
+\subsection{模型假设}
+\begin{enumerate}
+  \item 原始数据真实可靠，缺失值已按合理方法处理；
+  \item 指标之间的关系在研究期内保持相对稳定；
+  \item 未观测因素对结论的影响可以通过敏感性分析部分评估。
+\end{enumerate}
+
+\subsection{符号说明}
+\begin{table}[H]
+  \centering
+  \caption{主要符号说明}
+  \begin{tabularx}{0.82\textwidth}{cX}
+    \toprule
+    符号 & 含义 \\
+    \midrule
+    $x_{ij}$ & 第 $i$ 个对象在第 $j$ 个指标上的原始观测值 \\
+    $z_{ij}$ & 标准化后的指标值 \\
+    $w_j$ & 第 $j$ 个指标的权重，且 $\sum_j w_j=1$ \\
+    $S_i$ & 第 $i$ 个对象的综合得分 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section{模型建立与求解}
+\subsection{数据标准化}
+对效益型指标，使用极差变换：
+\begin{equation}
+  z_{ij}=\frac{x_{ij}-\min_i x_{ij}}{\max_i x_{ij}-\min_i x_{ij}}.
+\end{equation}
+对于成本型指标，可将分子改为 $\max_i x_{ij}-x_{ij}$。若极差为零，应在程序中作单独处理。
+
+\subsection{综合评价模型}
+令 $w_j$ 为指标权重，则对象 $i$ 的综合得分为
+\begin{equation}
+  S_i=\sum_{j=1}^{m}w_jz_{ij}, \qquad \sum_{j=1}^{m}w_j=1,\quad w_j\geq 0.
+\end{equation}
+权重可由题设、熵权法、层次分析法或其他适当方法确定。这里仅演示论文排版；实际参赛论文
+应完整说明权重来源、求解过程和结果解释。
+
+\section{结果分析与检验}
+表~\ref{tab:result} 展示示例结果。实际数据、计算过程及完整图表应替换为本题内容，并将篇幅较大的中间结果放入支撑材料。
+
+\begin{table}[H]
+  \centering
+  \caption{示例评价结果}
+  \label{tab:result}
+  \begin{tabular}{cccc}
+    \toprule
+    对象 & 综合得分 $S_i$ & 排名 & 情景变化后排名 \\
+    \midrule
+    A & 0.842 & 1 & 1 \\
+    B & 0.766 & 2 & 2 \\
+    C & 0.693 & 3 & 3 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+可将权重 $w_j$ 在合理区间内扰动，比较排序变化或目标函数变化，从而检验模型结论的稳定性。
+引用公开资料时，须在正文标注，例如文献~\cite{topsis}。
+
+\section{模型评价}
+\subsection{模型优点}
+该框架结构清晰，易于解释；标准化处理使不同量纲的指标可以进行比较；敏感性分析可反映结论的稳健性。
+
+\subsection{模型局限与改进方向}
+模型依赖指标选择与权重设定。后续可引入更多数据、动态权重或非线性关系，以提升对复杂场景的适应性。
+
+\clearpage
+\input{references}
+
+\appendix
+\section{支撑材料文件列表}
+% 请按实际提交内容逐项列出。若没有支撑材料，请改为“本论文没有支撑材料”。
+\begin{itemize}
+  \item \texttt{data/raw-data.csv}：原始数据；
+  \item \texttt{code/model.py}：模型求解的完整可运行程序；
+  \item \texttt{results/intermediate-results.pdf}：较大篇幅的中间结果。
+\end{itemize}
+
+\section{关键程序}
+% 竞赛提交时，请将这里替换为全部完整、可运行的源程序，且同时提交相应源文件。
+\begin{lstlisting}[language=Python,caption={综合得分计算示例}]
+def score(normalized_data, weights):
+    """Return weighted scores for each row of normalized_data."""
+    return [sum(value * weight for value, weight in zip(row, weights))
+            for row in normalized_data]
+\end{lstlisting}
+
+\end{document}

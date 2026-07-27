@@ -1,0 +1,88 @@
+% cmmcm2026.sty --- 全国大学生数学建模竞赛论文（2026 年修订稿）辅助样式
+% Copyright 2026 Jiayi
+% GitHub: @langonginc
+% 编译引擎：XeLaTeX
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cmmcm2026}[2026/07/27 CMMCM 2026 paper template]
+
+\RequirePackage[a4paper,margin=2.5cm]{geometry}
+\RequirePackage{amsmath,amssymb,amsthm,mathtools}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs,tabularx,multirow}
+\RequirePackage{float}
+\RequirePackage{caption}
+\RequirePackage{enumitem}
+\RequirePackage{xcolor}
+\RequirePackage{listings}
+\RequirePackage{fancyhdr}
+\RequirePackage{hyperref}
+
+% 版心与页码：竞赛规范要求 A4、四边至少 2.5 cm，页码位于页脚中部。
+\setlength{\parindent}{2em}
+\linespread{1.32}\selectfont
+\setlength{\parskip}{0pt}
+\setlist{nosep}
+\captionsetup{font=small,labelsep=space}
+\numberwithin{equation}{section}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}
+
+\ctexset{
+  section = {format=\Large\bfseries, aftername=\quad},
+  subsection = {format=\large\bfseries, aftername=\quad},
+  subsubsection = {format=\normalsize\bfseries, aftername=\quad}
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue,
+  pdftitle={全国大学生数学建模竞赛论文}
+}
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  frame=single,
+  breaklines=true,
+  columns=fullflexible,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=8pt,
+  showstringspaces=false,
+  keywordstyle=\color{blue!70!black},
+  commentstyle=\color{green!45!black},
+  stringstyle=\color{orange!60!black}
+}
+
+% 摘要页命令。请先用 \title 和 \mcmkeywords 设置标题、关键词。
+\makeatletter
+\newcommand{\mcmkeywords}[1]{\gdef\@mcmkeywords{#1}}
+\newcommand{\@mcmkeywords}{}
+\newcommand{\makemcmabstracttitle}{%
+  \begin{center}
+    {\zihao{3}\bfseries \@title\par}
+  \end{center}
+  \vspace{0.8em}
+}
+\newenvironment{mcmabstract}{%
+  \makemcmabstracttitle
+  \noindent\textbf{摘\quad 要}\quad\ignorespaces
+}{%
+  \par\vspace{0.8em}
+  \noindent\textbf{关键词}\quad \@mcmkeywords\par
+}
+\makeatother
+
+% 附录中的程序清单。源代码应以可运行的完整版本随支撑材料一并提交。
+\newcommand{\sourcefile}[2][]{\lstinputlisting[caption={#2},#1]{#2}}
