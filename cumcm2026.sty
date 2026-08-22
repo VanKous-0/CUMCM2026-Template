@@ -47,8 +47,9 @@
 \setlist[itemize]{leftmargin=2.3em,itemsep=0.25em,topsep=0.5em,parsep=0pt,partopsep=0pt}
 \setlist[enumerate]{leftmargin=2.8em,itemsep=0.25em,topsep=0.5em,parsep=0pt,partopsep=0pt}
 \newlist{problemlist}{enumerate}{1}
+\newcommand{\problemlabel}[1]{{\xeCJKsetup{CJKecglue={}}问题#1：}}
 \setlist[problemlist]{%
-  label={问题\arabic*：},
+  label={\problemlabel{\arabic*}},
   labelwidth=4.5em,
   labelsep=0.5em,
   leftmargin=5em,
@@ -126,6 +127,7 @@
   stringstyle=\normalfont\ttfamily,
   captionpos=b
 }
+\renewcommand{\lstlistingname}{代码}
 
 % 摘要页命令。请先用 \title 和 \mcmkeywords 设置标题、关键词。
 \makeatletter
