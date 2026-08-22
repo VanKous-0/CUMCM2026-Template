@@ -1,0 +1,8 @@
+\section{问题三模型建立与求解}
+
+设基准权重为 $\boldsymbol{w}$，对第 $j$ 个权重施加相对扰动 $\delta$，再将全部权重归一化。对每个扰动场景重新计算式~\ref{eq:score} 和式~\ref{eq:allocation}，记录排序变化率与目标函数相对变化：
+\begin{equation}
+  R(\delta)=\frac{|F(\delta)-F(0)|}{|F(0)|}.
+  \label{eq:sensitivity}
+\end{equation}
+若在预设区间内排序不变且 $R(\delta)$ 较小，可认为主要结论对该参数具有稳定性。具体阈值应结合题目允许误差和实际决策成本说明，不能仅凭经验给出。

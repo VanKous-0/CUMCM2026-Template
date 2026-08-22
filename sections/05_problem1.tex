@@ -1,0 +1,26 @@
+\section{问题一模型建立与求解}
+
+采用线性加权构造综合得分：
+\begin{equation}
+  S_i=\sum_{j=1}^{m}w_jz_{ij},
+  \qquad \sum_{j=1}^{m}w_j=1,\quad w_j\geq 0.
+  \label{eq:score}
+\end{equation}
+权重应由题设、数据特征或有依据的方法确定。若改用 TOPSIS，可参考相关经典方法\cite{topsis}，并完整说明正负理想解、距离和贴近度的计算过程。
+
+表~\ref{tab:score} 给出可替换的示例结果。正式论文应报告实际数据、参数来源及不确定性，而不是只给最终排名。
+
+\begin{table}[H]
+  \centering
+  \caption{示例综合评价结果}
+  \label{tab:score}
+  \begin{tabular}{cccc}
+    \toprule
+    对象 & 综合得分 $S_i$ & 排名 & 主要影响指标 \\
+    \midrule
+    A & 0.842 & 1 & 指标 1 \\
+    B & 0.766 & 2 & 指标 2 \\
+    C & 0.693 & 3 & 指标 3 \\
+    \bottomrule
+  \end{tabular}
+\end{table}

@@ -1,0 +1,39 @@
+name: Build XeLaTeX example
+
+on:
+  push:
+    branches:
+      - main
+      - codex/improve-cumcm2026-template
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile twice with XeLaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          latexmk_use_xelatex: true
+          args: -interaction=nonstopmode -halt-on-error -file-line-error
+      - name: Reject unresolved references and serious overfull boxes
+        shell: bash
+        run: |
+          if grep -E "LaTeX Error|Undefined control sequence|undefined references|Citation .* undefined|Reference .* undefined" main.log; then
+            exit 1
+          fi
+          if grep -E "Overfull \\hbox \\([1-9][0-9]*(\\.[0-9]+)?pt too wide\\)" main.log; then
+            exit 1
+          fi
+      - name: Upload compiled PDF and log
+        uses: actions/upload-artifact@v4
+        with:
+          name: cumcm2026-example
+          path: |
+            main.pdf
+            main.log

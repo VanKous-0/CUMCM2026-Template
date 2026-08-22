@@ -1,0 +1,28 @@
+# LaTeX intermediate files
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
+*.bbl
+*.blg
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.run.xml
+*.bcf
+*.dvi
+*.ps
+build/
+
+# Keep the reviewed repository preview PDF.
+!example.pdf
+
+# Local checks
+__pycache__/
+*.pyc

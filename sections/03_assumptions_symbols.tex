@@ -1,0 +1,28 @@
+\section{模型假设与符号说明}
+
+\subsection{模型假设}
+\begin{enumerate}
+  \item 数据记录真实可靠，异常值处理不会改变总体分布的主要特征；
+  \item 研究期内指标含义和对象之间的基本关系保持稳定；
+  \item 未观测因素造成的影响可通过敏感性分析近似评估；
+  \item 各项资源可按模型给定的最小单位进行配置。
+\end{enumerate}
+
+\subsection{符号说明}
+\begin{table}[H]
+  \centering
+  \caption{主要符号说明}
+  \label{tab:symbols}
+  \begin{tabularx}{0.86\textwidth}{cX}
+    \toprule
+    符号 & 含义 \\
+    \midrule
+    $x_{ij}$ & 第 $i$ 个对象在第 $j$ 个指标上的原始观测值 \\
+    $z_{ij}$ & 无量纲化后的指标值 \\
+    $w_j$ & 第 $j$ 个指标的权重，满足 $\sum_j w_j=1$ \\
+    $S_i$ & 第 $i$ 个对象的综合得分 \\
+    $y_i$ & 分配给第 $i$ 个对象的资源量 \\
+    $B$ & 可用资源总量 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
