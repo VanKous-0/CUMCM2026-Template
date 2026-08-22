@@ -19,6 +19,7 @@
 *.dvi
 *.ps
 build/
+work/
 
 # Keep the reviewed repository preview PDF.
 !example.pdf
