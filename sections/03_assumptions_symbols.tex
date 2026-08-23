@@ -1,28 +1,20 @@
-\section{模型假设与符号说明}
+\section{模型假设}
 
-\subsection{模型假设}
+% 假设应有依据、可解释，并在后文说明其影响；不要罗列与模型无关的常识。
 \begin{enumerate}
-  \item 数据记录真实可靠，异常值处理不会改变总体分布的主要特征；
-  \item 研究期内指标含义和对象之间的基本关系保持稳定；
-  \item 未观测因素造成的影响可通过敏感性分析近似评估；
-  \item 各项资源可按模型给定的最小单位进行配置。
+  \item 假设【数据记录或抽样过程】能够代表研究对象的主要特征；
+  \item 假设【研究期内的关键关系】保持相对稳定；
+  \item 假设【未观测因素】可通过误差项或敏感性分析进行评估。
 \end{enumerate}
 
-\subsection{符号说明}
-\begin{table}[H]
-  \centering
-  \caption{主要符号说明}
+\section{符号说明}
+
+% symboltable 为可跨页三线表；可选参数为表题，第三列填写单位或“--”。
+\begin{symboltable}[主要符号说明]
   \label{tab:symbols}
-  \begin{tabularx}{0.86\textwidth}{cX}
-    \toprule
-    符号 & 含义 \\
-    \midrule
-    $x_{ij}$ & 第 $i$ 个对象在第 $j$ 个指标上的原始观测值 \\
-    $z_{ij}$ & 无量纲化后的指标值 \\
-    $w_j$ & 第 $j$ 个指标的权重，满足 $\sum_j w_j=1$ \\
-    $S_i$ & 第 $i$ 个对象的综合得分 \\
-    $y_i$ & 分配给第 $i$ 个对象的资源量 \\
-    $B$ & 可用资源总量 \\
-    \bottomrule
-  \end{tabularx}
-\end{table}
+  $x_{ij}$ & 第 $i$ 个样本在第 $j$ 个特征上的原始观测值 & -- \\
+  $z_{ij}$ & 数据预处理后的特征值 & -- \\
+  $\boldsymbol{\theta}$ & 待估计的模型参数向量 & -- \\
+  $\hat{y}_i$ & 第 $i$ 个样本的预测值 & 题目给定单位 \\
+  $L$ & 模型的损失函数或评价指标 & -- \\
+\end{symboltable}

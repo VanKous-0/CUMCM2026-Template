@@ -30,6 +30,7 @@
 \RequirePackage{amsmath,amssymb,amsthm,mathtools}
 \RequirePackage{graphicx}
 \RequirePackage{booktabs,tabularx,multirow}
+\RequirePackage{array,longtable}
 \RequirePackage{float}
 \RequirePackage{caption}
 \RequirePackage{enumitem}
@@ -83,23 +84,68 @@
 % 标题字号与间距是模板默认样式；官方规范未统一规定字体、字号、行距和颜色。
 \ctexset{
   section = {
+    name={,、},
+    number=\chinese{section},
     format=\zihao{4}\bfseries,
-    beforeskip=1.5ex plus 0.3ex minus 0.2ex,
-    afterskip=0.8ex plus 0.1ex,
+    beforeskip=1.7ex plus 0.3ex minus 0.2ex,
+    afterskip=0.9ex plus 0.1ex,
     aftername=\quad
   },
   subsection = {
+    number=\arabic{section}.\arabic{subsection},
     format=\zihao{-4}\bfseries,
     beforeskip=1.2ex plus 0.2ex minus 0.1ex,
     afterskip=0.6ex plus 0.1ex,
     aftername=\quad
   },
   subsubsection = {
+    number=\arabic{section}.\arabic{subsection}.\arabic{subsubsection},
     format=\zihao{-4}\bfseries,
     beforeskip=1.0ex plus 0.2ex minus 0.1ex,
     afterskip=0.5ex,
     aftername=\quad
   }
+}
+
+% 附录恢复 A、B、C 编号，避免正文中文数字编号影响附录习惯。
+\newcommand{\mcmappendix}{%
+  \appendix
+  \ctexset{section={name={,},number=\Alph{section},aftername=\quad}}%
+}
+
+% 可跨页的三线符号表。可选参数为表题，\label 可紧跟在环境开始之后。
+\newenvironment{symboltable}[1][主要符号说明]{%
+  \renewcommand{\arraystretch}{1.18}%
+  \begin{longtable}{@{}>{\centering\arraybackslash}p{0.15\textwidth}p{0.59\textwidth}>{\centering\arraybackslash}p{0.15\textwidth}@{}}
+    \caption{#1}\\
+    \toprule
+    符号 & 含义 & 单位 \\
+    \midrule
+    \endfirsthead
+    \multicolumn{3}{r}{续表}\\
+    \toprule
+    符号 & 含义 & 单位 \\
+    \midrule
+    \endhead
+    \midrule
+    \multicolumn{3}{r}{下页续表}\\
+    \endfoot
+    \bottomrule
+    \endlastfoot
+}{%
+  \end{longtable}
+}
+
+% 图形/算法流程图占位框：参数依次为高度、图题和引用标签。
+\newcommand{\figureplaceholder}[3][4.2cm]{%
+  \begin{figure}[H]
+    \centering
+    \fbox{\parbox[c][#1][c]{0.82\textwidth}{%
+      \centering\small 图形占位：请替换为 \texttt{\string\includegraphics}%
+    }}
+    \caption{#2}
+    \label{#3}
+  \end{figure}
 }
 
 % 隐藏链接边框和颜色，同时清空可能暴露身份的作者元数据。
@@ -111,7 +157,7 @@
 
 % 黑白、可打印且无需 shell-escape 的代码样式。
 \lstset{
-  basicstyle=\small\ttfamily,
+  basicstyle=\footnotesize\ttfamily,
   frame=single,
   rulecolor=\color{black},
   breaklines=true,
@@ -121,11 +167,16 @@
   numbers=left,
   numberstyle=\tiny,
   numbersep=8pt,
+  xleftmargin=1.5em,
+  framexleftmargin=1.2em,
+  aboveskip=0.8em,
+  belowskip=0.8em,
   showstringspaces=false,
   keywordstyle=\bfseries,
   commentstyle=\itshape,
   stringstyle=\normalfont\ttfamily,
-  captionpos=b
+  postbreak=\mbox{\textnormal{\scriptsize$\hookrightarrow$}\space},
+  captionpos=t
 }
 \renewcommand{\lstlistingname}{代码}
 
@@ -140,11 +191,14 @@
   \vspace{0.8em}
 }
 \newenvironment{mcmabstract}{%
+  \begingroup
+  \linespread{1.18}\selectfont
   \makemcmabstracttitle
-  \noindent\textbf{摘\quad 要}\quad\ignorespaces
+  \noindent\textbf{摘\quad 要：}\quad\ignorespaces
 }{%
-  \par\vspace{0.8em}
-  \noindent\textbf{关键词}\quad \@mcmkeywords\par
+  \par\vspace{0.7em}
+  \noindent\textbf{关键词：}\@mcmkeywords\par
+  \endgroup
 }
 \makeatother
 

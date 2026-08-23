@@ -1,26 +1,40 @@
 \section{问题一模型建立与求解}
 
-采用线性加权构造综合得分：
+\subsection{问题分析}
+% 明确问题一的输入、输出、评价指标和建模难点。
+在此给出问题一的技术路线。图~\ref{fig:problem1-flow} 可替换为实际算法流程图。
+\figureplaceholder{问题一建模流程图}{fig:problem1-flow}
+
+\subsection{数据处理}
+% 说明本问题实际使用的样本、特征、训练集/测试集划分及防止数据泄漏的措施。
+在此引用第五节的数据预处理结果，并说明问题一的专用处理步骤。
+
+\subsection{模型建立}
+% 给出变量、目标函数、约束和参数含义，而不是只列算法名称。
+用占位表达式表示预测或评价模型：
 \begin{equation}
-  S_i=\sum_{j=1}^{m}w_jz_{ij},
-  \qquad \sum_{j=1}^{m}w_j=1,\quad w_j\geq 0.
-  \label{eq:score}
+  \hat{y}_i=f(\boldsymbol{x}_i;\boldsymbol{\theta}),
+  \qquad
+  \boldsymbol{\theta}^{*}=\arg\min_{\boldsymbol{\theta}}L(\boldsymbol{\theta}).
+  \label{eq:model-placeholder}
 \end{equation}
-权重应由题设、数据特征或有依据的方法确定。若改用 TOPSIS，可参考相关经典方法\cite{topsis}，并完整说明正负理想解、距离和贴近度的计算过程。
 
-表~\ref{tab:score} 给出可替换的示例结果。正式论文应报告实际数据、参数来源及不确定性，而不是只给最终排名。
+\subsection{模型求解}
+% 说明算法步骤、参数设置、软件环境、随机种子和停止条件。
+在此描述训练、搜索或优化过程，并把完整可运行程序放入附录与支撑材料。
 
+\subsection{结果分析}
+% 报告点估计、误差、置信区间或分类指标，并解释结果的实际含义。
 \begin{table}[H]
   \centering
-  \caption{示例综合评价结果}
-  \label{tab:score}
-  \begin{tabular}{cccc}
+  \caption{问题一结果占位表}
+  \label{tab:problem1-result}
+  \begin{tabularx}{0.78\textwidth}{cXXX}
     \toprule
-    对象 & 综合得分 $S_i$ & 排名 & 主要影响指标 \\
+    模型 & 训练集指标 & 验证集指标 & 备注 \\
     \midrule
-    A & 0.842 & 1 & 指标 1 \\
-    B & 0.766 & 2 & 指标 2 \\
-    C & 0.693 & 3 & 指标 3 \\
+    基准模型 & 【填写】 & 【填写】 & 用于比较 \\
+    改进模型 & 【填写】 & 【填写】 & 最终模型 \\
     \bottomrule
-  \end{tabular}
+  \end{tabularx}
 \end{table}
